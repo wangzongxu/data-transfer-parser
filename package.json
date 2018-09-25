@@ -1,14 +1,14 @@
 {
   "name": "dataTransfer-parser",
   "version": "0.1.0",
-  "description": "",
+  "description": "clipboard data parser",
   "main": "dist/dataTransfer-parser.js",
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["clipboard", "parser"],
+  "author": "308929264@qq.com",
+  "license": "MIT",
   "devDependencies": {
     "rollup": "^0.66.2"
   }
