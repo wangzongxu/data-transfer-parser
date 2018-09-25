@@ -1,5 +1,5 @@
 {
-  "name": "dataTransfer-parser",
+  "name": "data-transfer-parser",
   "version": "0.1.0",
   "description": "clipboard data parser",
   "main": "dist/dataTransfer-parser.js",
