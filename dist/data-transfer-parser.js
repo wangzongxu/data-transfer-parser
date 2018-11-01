@@ -84,7 +84,7 @@
 
     /**
      * 通过类型获取规则
-     * @param type {string|regexp} 类型
+     * @param type {string} 类型
      * @param rules {array} 规则
      * @return {object}
      */
@@ -99,7 +99,7 @@
 
     /**
      * 通过类型获取规则索引
-     * @param type {string|regexp} 类型
+     * @param type {string} 类型
      * @param rules {array} 规则
      * @return {number}
      */
@@ -115,8 +115,8 @@
 
     /**
      * 类型匹配
-     * @param type {string|regexp} 类型
-     * @param rules {array} 规则
+     * @param type {string} 类型
+     * @param rule {string|regexp} 规则
      * @return {boolean}
      */
     function typeMatch(type, rule) {
