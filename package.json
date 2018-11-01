@@ -6,7 +6,10 @@
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },
-  "keywords": ["clipboard", "parser"],
+  "keywords": [
+    "clipboard",
+    "parser"
+  ],
   "author": "308929264@qq.com",
   "license": "MIT",
   "devDependencies": {

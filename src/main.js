@@ -34,10 +34,12 @@ function getHigherPriorityResult(transfers, rules) {
         }
     }
 
-    let hpIndex = Math.min.apply(null, priorities)
-    let hpRule = rules[hpIndex]
-    let transfer = itemsMap[hpIndex]
-    getResultByTransfer(transfer, hpRule.parser)
+    if (priorities.length > 0) {
+        let hpIndex = Math.min.apply(null, priorities)
+        let hpRule = rules[hpIndex]
+        let transfer = itemsMap[hpIndex]
+        getResultByTransfer(transfer, hpRule.parser)
+    }
 }
 
 /**
