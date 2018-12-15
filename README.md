@@ -5,13 +5,13 @@
 ## Install
 
 ```bash
-npm install dataTransfer-parser -S
+npm install data-transfer-parser -S
 ```
 
 ## Usage
 
 ```js
-    import parseDataTransfer from 'dataTransfer-parser'
+    import parseDataTransfer from 'data-transfer-parser'
 
     document.body.addEventListener('paste', handle)
 
