@@ -10,25 +10,29 @@
      * @param opt {object} 选项
      */
     function parseDataTransfer(data, opt) {
-        if (!(data && data.items)) return
-        var greed = !!opt.greed;
+        if (data && data.items && data.items.length > 0) {
+            var greed = !!opt.greed;
+            var multiple = !!opt.multiple;
 
-        if (greed) {
-            getAllResult(data.items, opt.rules);
-        } else {
-            getHigherPriorityResult(data.items, opt.rules);
+            if (greed) {
+                getAllResult(data.items, opt.rules);
+            } else {
+                let rule = getHigherPriorityRule(data.items, opt.rules);
+                if (rule) {
+                    getResultByRule(data.items, rule, multiple);
+                }
+            }
         }
     }
 
     /**
-     * 获取优先级最高的结果
+     * 获取可用的最高优先级规则
      * @param transfers {array} 数据传输对象集合
      * @param rules {array} 规则
-     * @return {array}
+     * @return {rule}
      */
-    function getHigherPriorityResult(transfers, rules) {
+    function getHigherPriorityRule(transfers, rules) {
         var priorities = [];
-        var itemsMap = {};
 
         for (let i = 0; i < transfers.length; i++) {
             let item = transfers[i];
@@ -36,15 +40,33 @@
 
             if (index > -1) {
                 priorities.push(index);
-                itemsMap[index] = item;
             }
         }
 
         if (priorities.length > 0) {
             let hpIndex = Math.min.apply(null, priorities);
-            let hpRule = rules[hpIndex];
-            let transfer = itemsMap[hpIndex];
-            getResultByTransfer(transfer, hpRule.parser);
+            return rules[hpIndex]
+        }
+    }
+
+    /**
+     * 根据单个规则或取结果
+     * @param transfers {array} 数据传输对象集合
+     * @param rule {rule} 规则
+     * @param multiple {boolean} 是否处理多个类型相同的文件
+     * @return {array}
+     */
+    function getResultByRule(transfers, rule, multiple) {
+        for (let i = 0; i < transfers.length; i++) {
+            let item = transfers[i];
+
+            if (typeMatch(item.type, rule.test)) {
+                getResultByTransfer(item, rule.parser);
+
+                if (!multiple) {
+                    break
+                }
+            }
         }
     }
 
